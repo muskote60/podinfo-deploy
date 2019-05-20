@@ -3,17 +3,20 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
-    traefik.frontend.rule.type: PathPrefixStrip
   creationTimestamp: null
   name: metrics
   namespace: dev
 spec:
   rules:
-  - http:
+  - host: training-user-40.training.weave.works
+    http:
       paths:
       - backend:
-          serviceName: metrics
+          serviceName: metrics-demo
           servicePort: 3000
-        path: /metrics
-status:
-  loadBalancer: {}
+        path: /mighty-fine
+  tls:
+  - hosts:
+    - training-user-40.training.weave.works
+    secretName: ingress-certificate
+
