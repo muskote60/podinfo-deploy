@@ -1,0 +1,25 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: metrics
+  namespace: dev
+  annotations:
+    flux.weave.works/tag.podinfod: glob:*
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: metrics
+  template:
+    metadata:
+      labels:
+        app: metrics
+      annotations:
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+      - name: podinfod
+        image: quay.io/repository/brice/metrics-demo
+        ports:
+        - containerPort: 3000
