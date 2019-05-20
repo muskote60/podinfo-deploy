@@ -12,7 +12,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: metrics-demo
+          serviceName: metrics
           servicePort: 3000
         path: /mighty-fine
   tls:
